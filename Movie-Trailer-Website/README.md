@@ -12,7 +12,7 @@ In addition to downloaded the 3 python files and storing them in the same locati
 
 ### Installing
 
-If you do not have Python 2.7 installed on your computer, the most recent version can be downloaded from the Downloads page on the Python Software Foundation website, here: https://www.python.org/downloads/.
+If you do not have Python 2.7 installed on your computer, the most recent version can be downloaded from the [Downloads page on the Python Software Foundation website](https://www.python.org/downloads/).
 
 ## Running the tests
 
