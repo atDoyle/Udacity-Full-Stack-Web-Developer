@@ -1,48 +1,49 @@
-.header_main {
-  margin: 0;
-  border: 0;
-  display: inline-block;
+.sidebar {
+	width: 10%;
+	margin-top: 75px;
+	font-size: 112px;
+	font-weight: bold;
+	font-family: "Calibri";
+	color: #223A52;
 }
 
-.margin{
-  margin-top: 100px;
-  margin-right: 25px;
-}
-
-.padding {
-  padding-bottom: 25px;
-  padding-top: 25px;
-}
-
-.header_sub {
-  margin: 0;
-  padding: 0;
-}
-
-hr {
-  margin: 0;
-}
-
-.main {
-  font-family: "Calibri";
-  width: 90%;
-  float: right;
+img {
+	max-width: 100%;
 }
 
 .left {
-  float: left;
+	float: left;
 }
 
 .right {
-  float: right;
+	float: right;
 }
 
-.height {
-  height: 1024px;
+.clear-both {
+	clear: both;
 }
 
-.width {
-  width: 10%;
+.padding {
+	padding-bottom: 25px;
+	padding-top: 25px;
+}
+
+.main {
+	font-family: "Calibri";
+	width: 90%;
+}
+
+.header {
+	margin: 0;
+	border: 0;
+	display: inline-block;
+}
+
+hr {
+	margin: 5px;
+	border: none;
+	height: 1px;
+	background-color: #223A52;
 }
 
 .clear-right {
@@ -52,12 +53,12 @@ hr {
 .parent {
     display: flex;
     justify-content: space-between;
-    font-size: 36px;
+    font-size: 24px;
 }
 
 h1 {
   font-size: 56px;
-  font-weight: bold;
+  font-weight: normal;
   color: #223A52;
   margin: 0;
   padding: 0;
@@ -65,11 +66,10 @@ h1 {
 
 h2 {
   font-size: 18px;
-  font-weight: normal;
+  font-weight: bold;
   color: #223A52;
   margin: 0;
   padding: 0;
-  text-align: right;
 }
 
 p {
@@ -80,18 +80,8 @@ p {
   padding: 0;
 }
 
-.clear-both {
-  clear: both;
-}
-
 
 .center {
   text-align: center;
 }
 
-.large {
-  font-size: 112px;
-  font-weight: bold;
-  font-family: "Calibri";
-  color: #223A52;
-}
