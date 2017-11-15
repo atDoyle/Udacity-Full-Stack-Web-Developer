@@ -1,7 +1,11 @@
+body {
+	font-size: 4vw;
+}
+
 .sidebar {
 	width: 10%;
+	font-size: 84px;
 	margin-top: 75px;
-	font-size: 112px;
 	font-weight: bold;
 	font-family: "Calibri";
 	color: #223A52;
