@@ -7,10 +7,18 @@
 	color: #223A52;
 }
 
-img {
+img.large {
 	max-width: 100%;
+	display: block;
+	max-height: 512px;
 }
 
+img.med {
+	max-width: 100%;
+	display: block;
+	max-height: 200px;
+}
+	
 .left {
 	float: left;
 }
@@ -84,4 +92,3 @@ p {
 .center {
   text-align: center;
 }
-
