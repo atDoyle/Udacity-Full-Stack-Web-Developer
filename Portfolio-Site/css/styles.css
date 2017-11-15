@@ -2,13 +2,16 @@ body {
 	font-size: 4vw;
 }
 
-.sidebar {
+.menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 	width: 10%;
 	font-size: 84px;
-	margin-top: 75px;
 	font-weight: bold;
 	font-family: "Calibri";
 	color: #223A52;
+	text-align: right;
 }
 
 img.large {
@@ -36,8 +39,8 @@ img.med {
 }
 
 .padding {
-	padding-bottom: 25px;
 	padding-top: 25px;
+	padding-bottom: 25px;
 }
 
 .main {
@@ -49,10 +52,12 @@ img.med {
 	margin: 0;
 	border: 0;
 	display: inline-block;
+	font-family: "Calibri";
 }
 
 hr {
-	margin: 5px;
+	margin: 0;
+	margin-bottom: 5px;
 	border: none;
 	height: 1px;
 	background-color: #223A52;
