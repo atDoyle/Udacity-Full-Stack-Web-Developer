@@ -1,7 +1,3 @@
-body {
-	font-size: 15vh;
-}
-
 header {
 	margin: 0;
 	border: 0;
@@ -11,82 +7,6 @@ header {
 	width: 90%;
 	justify-content: space-between;
 	align-items: flex-end;
-}
-
-.main-section {
-  margin: 0;
-	border: 0;
-	padding: 0;
-	display: flex;
-	justify-content: space-between;
-}
-
-.sidebar {
-  margin: 0;
-	padding: 0;
-	font-weight: bold;
-	font-family: "Calibri";
-	color: #223A52;
-	width: 10%;
-	max-height: 512px;
-}
-.menu {
-  list-style-type: none;
-  text-align: right;
-  margin: 0;
-  padding: 0;
-}
-
-.main {
-	font-family: "Calibri";
-	width: 90%;
-}
-
-#main-image {
-  display: block;
-	max-height: 512px;
-	max-width: 100%;
-}
-
-img.med {
-	max-width: 100%;
-	display: block;
-	max-height: 200px;
-}
-
-.left {
-	float: left;
-}
-
-.right {
-	float: right;
-}
-
-.clear-both {
-	clear: both;
-}
-
-.padding {
-	padding-top: 25px;
-	padding-bottom: 25px;
-}
-
-hr {
-	margin: 0;
-	margin-bottom: 5px;
-	border: none;
-	height: 1px;
-	background-color: #223A52;
-}
-
-.clear-right {
-  clear: right;
-}
-
-.parent {
-    display: flex;
-    justify-content: space-between;
-    font-size: 24px;
 }
 
 h1 {
@@ -105,7 +25,70 @@ h2 {
   padding: 0;
 }
 
-p {
+hr {
+	margin: 0;
+	margin-bottom: 5px;
+	border: none;
+	height: 1px;
+	background-color: #223A52;
+}
+
+.main-section {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.sidebar {
+	font-size: 10vw;
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	font-family: "Calibri";
+	color: #223A52;
+	width: 10%;
+	height: 100%;
+}
+.menu {
+  list-style-type: none;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+#main-image {
+	display: block;
+	max-height: 512px;
+	max-width: 100%;
+}
+
+.main {
+	width: 90%;
+}
+
+.project-image {
+	max-width: 100%;
+	display: block;
+	max-height: 200px;
+	padding: 0;
+	margin: 0;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear-both {
+	clear: both;
+}
+
+footer {
   font-size: 32px;
   font-weight: bold;
   color: #7d97ad;
@@ -113,6 +96,11 @@ p {
   padding: 0;
 }
 
+.projects {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+}
 
 .center {
   text-align: center;
