@@ -103,5 +103,10 @@ footer {
 }
 
 .center {
-  text-align: center;
+	text-align: center;
+}
+
+p {
+	margin: 0;
+	padding: 0;
 }
