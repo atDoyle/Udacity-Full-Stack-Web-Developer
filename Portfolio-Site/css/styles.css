@@ -1,23 +1,51 @@
 body {
-	font-size: 4vw;
+	font-size: 15vh;
 }
 
-.menu {
-	list-style-type: none;
+header {
 	margin: 0;
+	border: 0;
 	padding: 0;
-	width: 10%;
-	font-size: 84px;
+	display: flex;
+	font-family: "Calibri";
+	width: 90%;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.main-section {
+  margin: 0;
+	border: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.sidebar {
+  margin: 0;
+	padding: 0;
 	font-weight: bold;
 	font-family: "Calibri";
 	color: #223A52;
-	text-align: right;
+	width: 10%;
+	max-height: 512px;
+}
+.menu {
+  list-style-type: none;
+  text-align: right;
+  margin: 0;
+  padding: 0;
 }
 
-img.large {
-	max-width: 100%;
-	display: block;
+.main {
+	font-family: "Calibri";
+	width: 90%;
+}
+
+#main-image {
+  display: block;
 	max-height: 512px;
+	max-width: 100%;
 }
 
 img.med {
@@ -25,7 +53,7 @@ img.med {
 	display: block;
 	max-height: 200px;
 }
-	
+
 .left {
 	float: left;
 }
@@ -41,18 +69,6 @@ img.med {
 .padding {
 	padding-top: 25px;
 	padding-bottom: 25px;
-}
-
-.main {
-	font-family: "Calibri";
-	width: 90%;
-}
-
-.header {
-	margin: 0;
-	border: 0;
-	display: inline-block;
-	font-family: "Calibri";
 }
 
 hr {
