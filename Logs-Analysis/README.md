@@ -24,4 +24,4 @@ If you do not have Python 3.6 installed on your computer, the most recent versio
 
 ### Running the Files
 
-Once the files have been downloaded to the shared vagrant directory, log into the virtual machine using **vagrant ssh**.  After logging in, cd in to the **/vagrant** shared directory and run each file using the **python** command.  The results of each query will print in the prompt as well as into its own text file.
+Once the files have been downloaded to the shared vagrant directory, log into the virtual machine using **vagrant ssh**.  After logging in, cd into the **/vagrant** shared directory and run each file using the **python** command.  The results of each query will print in the prompt as well as into its own text file.
