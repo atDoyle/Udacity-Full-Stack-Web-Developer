@@ -16,9 +16,11 @@ This project uses 3 python files that each connect to the NEWS database and runs
 
 ### Prerequisites
 
-In order for the files in this repository to work, you will need a terminal, such as [GitBash](https://git-for-windows.github.io/), a virtual machine, the News database that is provided and a version of Python 3.6.
+In order for the files in this repository to work, you will need a terminal, such as GitBash, a virtual machine, the News database that is provided and a version of Python 3.6.
 
 ### Installing
+
+GitBash can be downloaded and installed from the [GitBash website](https://git-for-windows.github.io/).
 
 The virtual machine can be accessed using [Virtual Box](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1) and [Vagrant](https://www.vagrantup.com/downloads.html).
 
