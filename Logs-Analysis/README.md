@@ -16,7 +16,11 @@ This project uses 3 python files that each connect to the NEWS database and runs
 
 ### Prerequisites
 
-These python files are meant to be run on a virtual machine with the NEWS database already installed.  The 3 python files should be saved to the shared vagrant directory.
+In order for the files in this repository to work, you will need a terminal, such as [GitBash](https://git-for-windows.github.io/) and a virtual machine.  The virtual machine can be accessed using [Virtual Box](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1) and [Vagrant](https://www.vagrantup.com/downloads.html).
+
+One the virtual machine has been successfully installed, the News database can then be accessed.  The .sql which contains the database can be downloaded [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip).  Ensure that the extracted files are placed in the shared vagrant directory.
+
+Finally, the 3 python files in this repository should be saved to the shared vagrant directory of the virtual machine.
 
 ### Installing
 
@@ -24,4 +28,4 @@ If you do not have Python 3.6 installed on your computer, the most recent versio
 
 ### Running the Files
 
-Once the files have been downloaded to the shared vagrant directory, log into the virtual machine using **vagrant ssh**.  After logging in, cd into the **/vagrant** shared directory and run each file using the **python** command.  The results of each query will print in the prompt as well as into its own text file.
+The first thing that needs to be done is loading the data into the virtual machine.  To do that, first log into the virtual machine using **vagrant ssh**.  After logging in, cd into the **/vagrant** shared directory and enter the command **psql -d news -f newsdata.sql**.  After the data has been loaded the queries can be run successfully using the **python** command for each .py script in the respository.  The results of each query will print in the prompt as well as into its own text file.
