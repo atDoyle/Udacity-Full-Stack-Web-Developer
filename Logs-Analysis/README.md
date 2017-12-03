@@ -16,7 +16,7 @@ This project uses 3 python files that each connect to the NEWS database and runs
 
 ### Prerequisites
 
-In order for the files in this repository to work, you will need a terminal, such as [GitBash](https://git-for-windows.github.io/) and a virtual machine.  The virtual machine can be accessed using [Virtual Box](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1) and [Vagrant](https://www.vagrantup.com/downloads.html).
+In order for the files in this repository to work, you will need a terminal, such as [GitBash](https://git-for-windows.github.io/), and a virtual machine.  The virtual machine can be accessed using [Virtual Box](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1) and [Vagrant](https://www.vagrantup.com/downloads.html).
 
 One the virtual machine has been successfully installed, the News database can then be accessed.  The .sql which contains the database can be downloaded [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip).  Ensure that the extracted files are placed in the shared vagrant directory.
 
