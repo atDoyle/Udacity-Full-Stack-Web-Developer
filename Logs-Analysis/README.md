@@ -24,7 +24,7 @@ GitBash can be downloaded and installed from the [GitBash website](https://git-f
 
 The virtual machine can be accessed using [Virtual Box](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1) and [Vagrant](https://www.vagrantup.com/downloads.html).
 
-Once the virtual machine has been successfully installed, the News database can then be accessed.  The .sql which contains the database can be downloaded [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip).  Ensure that the extracted files are placed in the shared vagrant directory.
+Once the virtual machine has been successfully installed, the News database can then be accessed.  The .sql file which contains the database can be downloaded [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip).  Ensure that the extracted files are placed in the shared vagrant directory.
 
 If you do not have Python 3.6 installed on your computer, the most recent version can be downloaded from the [Downloads page on the Python Software Foundation website](https://www.python.org/downloads/).
 
