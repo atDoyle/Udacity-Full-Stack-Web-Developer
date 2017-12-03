@@ -28,6 +28,8 @@ Once the virtual machine has been successfully installed, the News database can 
 
 If you do not have Python 3.6 installed on your computer, the most recent version can be downloaded from the [Downloads page on the Python Software Foundation website](https://www.python.org/downloads/).
 
+Once these steps have been completed, the repository should be dowlnaded and saved in the shared vagrant directory.
+
 ### Running the Files
 
 The first thing that needs to be done is loading the data into the virtual machine.  To do that, first log into the virtual machine using **vagrant ssh**.  After logging in, cd into the **/vagrant** shared directory and enter the command **psql -d news -f newsdata.sql**.  After the data has been loaded the queries can be run successfully using the **python** command for each .py script in the respository.  The results of each query will print in the prompt as well as into its own text file.
