@@ -16,7 +16,7 @@ This project uses 3 python files that each connect to the NEWS database and runs
 
 ### Prerequisites
 
-In order for the files in this repository to work, you will need a terminal, such as GitBash, a virtual machine, the News database that is provided and a version of Python 3.6.
+In order for the files in this repository to work, you will need a terminal, such as Git Bash, a virtual machine, the News database that is provided and a version of Python 3.6.
 
 ### Installing
 
@@ -28,7 +28,7 @@ Once the virtual machine has been successfully installed, the News database can 
 
 If you do not have Python 3.6 installed on your computer, the most recent version can be downloaded from the [Downloads page on the Python Software Foundation website](https://www.python.org/downloads/).
 
-Once these steps have been completed, the repository should be dowlnaded and saved in the shared vagrant directory.
+Once these steps have been completed, the repository should be downloaded and saved in the shared vagrant directory.
 
 ### Running the Files
 
