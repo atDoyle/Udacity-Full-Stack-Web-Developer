@@ -1,0 +1,44 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="static/css/styles.css" rel="stylesheet">
+	<title>Major League Baseball Card Catalog</title>
+</head>
+<body>
+	<header>
+        <div id="title">
+            <h1>Major League Baseball Card Catalog</h1>
+        </div>
+        <div>
+            <div id="mlb-logo"><img id="logo" src="static/images/mlb.png" alt="Logo"></div>
+        </div>
+    </header>
+    <div id="menu">
+        <ul>
+            {%if 'username' not in session %}
+                <li><a href="{{url_for('showLogin')}}">Login</a></li>
+            {% else %}
+                <li><a href="{{url_for('disconnect')}}">Logout</a></li>
+            {% endif %}
+            <li><a href="{{url_for('newTeam' )}}">Add New Team</a></li>
+        </ul>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <strong> {{ message }} </strong>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div id="main">
+        <h1>Teams</h1>
+        <div>
+            {% for i in teams %}
+                <a href={{url_for('players', team_id=i.id) }}>{{i.name}}</a>
+                <div></div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
