@@ -1,6 +1,6 @@
 # Item Catalog
 
-This repository contains code for an application that provides a list of baseball cards as well as a user registration and authentication system. Registered users will have the ability to post, edit and delete their own teams and cards.
+This repository contains code for an application that provides a catalog of baseball cards as well as a user registration and authentication system. Registered users will have the ability to post, edit and delete their own teams and cards.
 
 
 ## Getting Started
