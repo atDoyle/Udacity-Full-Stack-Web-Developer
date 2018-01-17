@@ -1,7 +1,12 @@
 # Import packages
 import os
-from flask import Flask, render_template, request, redirect, url_for, \
-     jsonify, flash
+from flask import (Flask,
+                   render_template,
+                   request,
+                   redirect,
+                   url_for,
+                   jsonify,
+                   flash)
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import User, Base, Team, Player
@@ -18,6 +23,7 @@ import requests
 
 app = Flask(__name__)
 
+# Import client ID information for Gplus signin
 CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Baseball Card Catalog"
@@ -28,9 +34,11 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# Allow for the user to upload images
 UPLOAD_FOLDER = 'static/images'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 
 
 # Create anti-forgery state token
@@ -42,6 +50,7 @@ def showLogin():
     return render_template('login.html', STATE=state)
 
 
+# Connect to Facebook
 @app.route('/fbconnect', methods=['POST'])
 def fbconnect():
     if request.args.get('state') != login_session['state']:
@@ -54,7 +63,7 @@ def fbconnect():
         'web']['app_id']
     app_secret = json.loads(
         open('fb_client_secrets.json', 'r').read())['web']['app_secret']
-    url = 'https://graph.facebook.com/v2.11/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s' % (
+    url = 'https://graph.facebook.com/v2.11/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s' % (  # noqa
            app_id, app_secret, access_token)
     print url
     h = httplib2.Http()
@@ -65,7 +74,7 @@ def fbconnect():
     token = 'access_token=' + data['access_token']
 
     # Use token to get user info from API.
-    url = 'https://graph.facebook.com/v2.11/me?%s&fields=name,id,email,picture' % token
+    url = 'https://graph.facebook.com/v2.11/me?%s&fields=name,id,email,picture' % token  # noqa
     http = httplib2.Http()
     result = http.request(url, 'GET')[1]
     data = json.loads(result)
@@ -92,23 +101,30 @@ def fbconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += '" style = "width: 300px; ' \
+              'height: 300px;' \
+              'border-radius: 150px;' \
+              '-webkit-border-radius: 150px;' \
+              '-moz-border-radius: 150px;"> '
 
     flash("Now logged in as %s" % login_session['username'])
     return output
 
 
+# Disconnect from Facebook - Revoke a current user's token
+# and reset their login_session
 @app.route('/fbdisconnect')
 def fbdisconnect():
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
     access_token = login_session['access_token']
-    url = 'https://graph.facebook.com/%s/permissions?access_token=%s' % (facebook_id, access_token)
+    url = 'https://graph.facebook.com/%s/permissions?access_token=%s' % (facebook_id, access_token)  # noqa
     h = httplib2.Http()
     result = h.request(url, 'DELETE')[1]
     return "You have been logged out"
 
 
+# Connect to Google
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
     # Validate state token
@@ -162,8 +178,8 @@ def gconnect():
     stored_access_token = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
-                                 200)
+        response = make_response(
+            json.dumps('Current user is already connected.'), 200)
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -198,14 +214,16 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-    flash("You are now logged in as %s" % login_session['username'])
+    output += ' " style = "width: 300px; '\
+              'height: 300px;' \
+              'border-radius: 150px;' \
+              '-webkit-border-radius: 150px;' \
+              '-moz-border-radius: 150px;"> '
+    flash("You are now logged in as %s." % login_session['username'])
     return output
 
 
 # User Helper Functions
-
-
 def createUser(login_session):
     newUser = User(name=login_session['username'], email=login_session[
                    'email'], picture=login_session['picture'])
@@ -228,21 +246,22 @@ def getUserID(email):
         return None
 
 
-# DISCONNECT - Revoke a current user's token and reset their login_session
-
-
+# Disconnect from Google - Revoke a current user's token
+# and reset their login_session
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session.get('access_token')
     if access_token is None:
         print 'Access Token is None'
-        response = make_response(json.dumps('Current user not connected.'), 401)
+        response = make_response(json.dumps('Current user not connected.'),
+                                 401)
         response.headers['Content-Type'] = 'application/json'
         return response
     print 'In gdisconnect access token is %s', access_token
     print 'User name is: '
     print login_session['username']
-    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['access_token']
+    url = ('https://accounts.google.com/o/oauth2/revoke?token=%s'
+           % login_session['access_token'])
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
     print 'result is '
@@ -252,13 +271,13 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     else:
-        response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+        response = make_response(
+            json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
 
 
 # JSON Endpoints
-
 @app.route('/teams/<int:team_id>/JSON')
 def teamBaseballCardsJSON(team_id):
     players = session.query(Player).filter_by(team_id=team_id).all()
@@ -271,43 +290,61 @@ def playerBaseballCardJSON(team_id, player_id):
     return jsonify(CardInfo=[i.serialize for i in player])
 
 
+# Determine if file uploaded by the user is allowed
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+# Initial routing function which queries the Team database
 @app.route('/', methods=['GET', 'POST'])
 def teams():
     teams = session.query(Team).all()
     return render_template('main.html', teams=teams)
 
 
+# Routing function to add a new team to the Team database
 @app.route('/teams/new', methods=['GET', 'POST'])
 def newTeam():
     if 'username' not in login_session:
         flash('Please login to continue.')
         return redirect('/login')
     if request.method == 'POST':
-        newItem = Team(name=request.form['name'], user_id=login_session['user_id'])
+        newItem = Team(name=request.form['name'],
+                       user_id=login_session['user_id'])
         session.add(newItem)
         session.commit()
-        flash('New baseball team, the %s, successfully created.  You can now add baseball cards for this team.' % newItem.name)
+        flash('New baseball team, the %s, successfully created.'
+              '  You can now add baseball cards for this team.'
+              % newItem.name)
         return redirect(url_for('teams'))
     else:
         return render_template('addTeam.html')
 
 
+# Routing function to view existing baseball cards
+# stored in the Players database for a specific team
 @app.route('/teams/<int:team_id>')
 def players(team_id):
     team = session.query(Team).filter_by(id=team_id).one()
     creator = getUserInfo(team.user_id)
     players = session.query(Player).filter_by(team_id=team_id).all()
-    if 'username' not in login_session or creator.id != login_session['user_id']:
-        return render_template('publicplayers.html', team=team, players=players, team_id=team_id, creator=creator)
+    if ('username' not in login_session or
+       creator.id != login_session['user_id']):
+        return render_template('publicplayers.html',
+                               team=team, players=players,
+                               team_id=team_id,
+                               creator=creator)
     else:
-        return render_template('players.html', team=team, players=players, team_id=team_id, creator=creator)
+        return render_template('players.html',
+                               team=team,
+                               players=players,
+                               team_id=team_id,
+                               creator=creator)
 
 
+# Routing function to add a new baseball card to the
+# Players database
 @app.route('/teams/<int:team_id>/new', methods=['GET', 'POST'])
 def newBaseballCard(team_id):
     if 'username' not in login_session:
@@ -315,7 +352,9 @@ def newBaseballCard(team_id):
         return redirect('/login')
     team = session.query(Team).filter_by(id=team_id).one()
     if login_session['user_id'] != team.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to add baseball cards for this team.');}</script><body onload='myFunction()''>"
+        flash('You are not authorized '
+              'to add baseball cards for this team')
+        return redirect(url_for('players', team_id=team_id))
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -328,16 +367,22 @@ def newBaseballCard(team_id):
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        newItem = Player(name=request.form['name'], price=request.form['price'], image=filename, team_id=team_id, user_id=login_session['user_id'])
+        newItem = Player(name=request.form['name'],
+                         price=request.form['price'],
+                         image=filename,
+                         team_id=team_id,
+                         user_id=login_session['user_id'])
         session.add(newItem)
         session.commit()
-        flash("New baseball card successfully created for %s" % newItem.name)
+        flash("New baseball card successfully created for %s." % newItem.name)
         return redirect(url_for('players', team_id=team_id))
     else:
         return render_template('create.html', team_id=team_id)
 
 
-@app.route('/teams/<int:team_id>/<int:player_id>/edit', methods=['GET', 'POST'])
+# Routing function to edit an existing baseball card
+# in the Players database
+@app.route('/teams/<int:team_id>/<int:player_id>/edit', methods=['GET', 'POST'])  # noqa
 def editBaseballCard(team_id, player_id):
     if 'username' not in login_session:
         flash('Please login to continue.')
@@ -345,7 +390,8 @@ def editBaseballCard(team_id, player_id):
     editedItem = session.query(Player).filter_by(id=player_id).one()
     team = session.query(Team).filter_by(id=team_id).one()
     if login_session['user_id'] != team.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to edit this baseball card.');}</script><body onload='myFunction()''>"
+        flash('You are not authorized to edit this baseball card.')
+        return redirect(url_for('players', team_id=team_id))
     if request.method == 'POST':
         if request.form['name'] and request.form['price']:
             editedItem.name = request.form['name']
@@ -354,29 +400,40 @@ def editBaseballCard(team_id, player_id):
             session.commit()
             flash('Baseball card successfully edited.')
         else:
-            flash('No information entered.  Please enter both a new name and price.')
+            flash('No information entered. '
+                  'Please enter both a new name and price.')
         return redirect(url_for('players', team_id=team_id))
     else:
-        return render_template('edit.html', team_id=team_id, player_id=player_id, item=editedItem)
+        return render_template('edit.html',
+                               team_id=team_id,
+                               player_id=player_id,
+                               item=editedItem)
 
 
-@app.route('/teams/<int:team_id>/<int:player_id>/delete', methods=['GET', 'POST'])
+# Routing function to delete a baseball card from the
+# Players database
+@app.route('/teams/<int:team_id>/<int:player_id>/delete', methods=['GET', 'POST'])  # noqa
 def deleteBaseballCard(team_id, player_id):
     if 'username' not in login_session:
         flash('Please login to continue.')
         return redirect('/login')
     itemToDelete = session.query(Player).filter_by(id=player_id).one()
     if itemToDelete.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to delete this baseball card.');}</script><body onload='myFunction()''>"
+        flash('You are not authorized to delete this baseball card.')
+        return redirect(url_for('players', team_id=team_id))
     if request.method == 'POST':
         session.delete(itemToDelete)
         flash('%s Successfully Deleted' % itemToDelete.name)
         session.commit()
         return redirect(url_for('players', team_id=team_id))
     else:
-        return render_template('delete.html', team_id=team_id, player_id=player_id, item=itemToDelete)
+        return render_template('delete.html',
+                               team_id=team_id,
+                               player_id=player_id,
+                               item=itemToDelete)
 
 
+# Routing function to upload an image
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
