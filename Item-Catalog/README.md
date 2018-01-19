@@ -5,7 +5,7 @@ This repository contains code for an application that provides a catalog of base
 
 ## Getting Started
 
-This project uses a the Flask framework to run a web server in Python that will allow user to view existing teams, players and cards in a database as well as add their own.
+This project uses the Flask framework to run a web server in Python that will allow user to view existing teams, players and cards in a database as well as add their own.
 
 ### Prerequisites
 
