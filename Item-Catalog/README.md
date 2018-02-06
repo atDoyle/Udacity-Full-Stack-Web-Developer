@@ -13,7 +13,7 @@ In order for the files in this repository to work, you will need a terminal, suc
 
 ### Installing
 
-GitBash can be downloaded and installed from the [GitBash website](https://git-for-windows.github.io/).
+Git Bash can be downloaded and installed from the [Git Bash website](https://git-for-windows.github.io/).
 
 The virtual machine can be accessed using [Virtual Box](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1) and [Vagrant](https://www.vagrantup.com/downloads.html).
 
