@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link href="css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div id="options-box">
+        <div class="wikipedia-container">
+            <h1>Welcome to Historic<br>Mount Pleasant</h1>
+            <div id="wikipedia-header"></div>	
+            <h3>Wikipedia Entry</h3>
+            <ul id="wikipedia-links"></ul>
+        </div>
+        <hr>
+        <div class="locations">
+            <h3>Establishments</h3>
+            <p>
+                Select a category:
+                <select id="mySelect" data-bind="options: categories, value: x, event: {change: selectCategory}"></select>
+            </p>
+            <ul data-bind="foreach: places()">
+                <li id="locations" data-bind="text: title, click: $parent.selectLocation, uniqueName: true"></li>
+            </ul>
+        </div>
+        <hr>
+      </div>
+      <div id="map-container">
+        <div id="map"></div>
+      </div>
+    </div>
+    <script src="js/libs/jquery-3.3.1.min.js"></script>
+    <script src="js/libs/knockout-3.4.2.js"></script>
+    <script src="js/script.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyA_j4JFgod__QT59QpeHZ02214lj30Wu9I&v=3&callback=initMap">
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: #378aff;
+    font-family: Roboto, 'Segoe UI', Tahoma, sans-serif; 
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #ffbc37;
+}
+
+a:hover {
+    color: #ffbc37;
+    text-decoration: none;
+    font-weight: bold;
+}
+    
+
+#options-box {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: 25%;
+    height: 100%;
+    float: left;
+    color: white;
+    text-decoration: none;
+}
+
+h1 {
+    margin: 0;
+}
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.wikipedia-container {
+    text-align: center;
+}
+
+.locations {
+    padding: 0;
+    border: 0;
+}
+
+#map-container {
+    width: 75%;
+    float: right;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+}
+
+li {
+    list-style-type: none;
+}
+
+#locations {
+    padding: 12px;
+}
+
+#locations:hover {
+    color: #ffbc37;
+    font-weight: bold;
+    cursor: pointer;
+}
