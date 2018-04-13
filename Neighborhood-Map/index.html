@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link href="css/styles.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
       <div id="options-box">
         <div class="wikipedia-container">
             <h1>Welcome to Historic<br>Mount Pleasant</h1>
-            <div id="wikipedia-header"></div>	
+            <div id="wikipedia-header">
+                <h6 data-bind="text: wikiHead"></h6>
+            </div>	
             <h3>Wikipedia Entry</h3>
-            <ul id="wikipedia-links"></ul>
+            <ul id="wikipedia-link">
+                <li>
+                    <a data-bind="attr: {href: wikiElem}" target="_blank">Mount Pleasant, Washington, DC</a>
+                </li>
+            </ul>
         </div>
         <hr>
         <div class="locations">
@@ -33,7 +41,7 @@
     <script src="js/libs/knockout-3.4.2.js"></script>
     <script src="js/script.js"></script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyA_j4JFgod__QT59QpeHZ02214lj30Wu9I&v=3&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyA_j4JFgod__QT59QpeHZ02214lj30Wu9I&v=3&callback=initMap" onError="googleError">
     </script>
-  </body>
+    </body>
 </html>

@@ -1,11 +1,9 @@
 html,
 body {
-    height: 100%;
     margin: 0;
-    padding: 0;
-    width: 100%;
     background: #378aff;
-    font-family: Roboto, 'Segoe UI', Tahoma, sans-serif; 
+    font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+    font-size: 2vh;
 }
 
 a:link {
@@ -27,29 +25,33 @@ a:hover {
 
 #options-box {
     padding: 0;
-    margin: 0;
+    margin: 2px;
     border: 0;
     width: 25%;
-    height: 100%;
-    float: left;
     color: white;
     text-decoration: none;
+    position: absolute;
+    font-size: 2vh;
 }
 
 h1 {
     margin: 0;
+    font-size: 2vh;
 }
 
 h2 {
     margin: 0;
+    font-size: 2vh;
 }
 
 h3 {
     margin: 0;
+    font-size: 2vh;
 }
 
 p {
     margin: 0;
+    font-size: 2vh;
 }
 
 .wikipedia-container {
@@ -57,20 +59,34 @@ p {
 }
 
 .locations {
-    padding: 0;
-    border: 0;
+    padding: 10px;
+    border: 0px;
+    margin: 0px;
+}
+
+select {
+    width: 10em;
 }
 
 #map-container {
     width: 75%;
+    height: 100%;
     float: right;
+    margin: 0;
+    padding: 0;
 }
 
 #map {
     height: 100%;
-    width: 100%;
+    width: 75%;
     position: absolute;
 
+}
+
+ul {
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 li {
@@ -78,7 +94,8 @@ li {
 }
 
 #locations {
-    padding: 12px;
+    padding: 0px;
+    margin: 0px;
 }
 
 #locations:hover {

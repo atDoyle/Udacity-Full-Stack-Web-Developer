@@ -19,55 +19,17 @@ var map;
 var markers = [];
 
 
-/// Get Wikipedia Article on Mount Pleasant
-function loadData() {
-    var $wikiHead = $("#wikipedia-header");
-    var $wikiElem = $("#wikipedia-links");
-
-    // clear out old data before new request
-    $wikiElem.text("");
-
-    // load wikipedia data
-    var wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + "Mount_Pleasant,_Washington,_D.C." + "&format=json&callback=wikiCallback";
-    var wikiRequestTimeout = setTimeout(function(){
-        $wikiElem.text("failed to get wikipedia resources");
-    }, 8000);
-
-    $.ajax({
-        url: wikiUrl,
-        dataType: "jsonp",
-        jsonp: "callback",
-        success: function( response ) {
-            var articleList = response[1];
-            var description = response[2];
-            for (var i = 0; i < articleList.length; i++) {
-                articleStr = articleList[i];
-                var url = "http://en.wikipedia.org/wiki/" + articleStr;
-                $wikiHead.append("<h6>" + description + "</h6>");
-                $wikiElem.append('<li><a href="' + url + '" + target="_blank">' + articleStr + '</a></li>');
-            };
-
-            clearTimeout(wikiRequestTimeout);
-        }
-    });
-
-    return false;
-};
-
 initMap = function() {
     var viewModel = function() {
         var self = this;
 
         // Create a styles array to use with the map.
-        // Constructor creates a new map - only center and zoom are required.
+
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 38.929717, lng: -77.035554},
+          center: {lat: 38.931085, lng: -77.038206},
           zoom: 16,
           mapTypeControl: false
         });
-
-        // These are the real estate listings that will be shown to the user.
-        // Normally we'd have these in a database instead.
 
         // Create the infowindow for each marker
         var largeInfowindow = new google.maps.InfoWindow();
@@ -145,7 +107,7 @@ initMap = function() {
                         var c = place.rating;
                         var d = place.reviews;
                     }
-                infowindow.setContent('<div style="font-weight:bold;">' + marker.title + '</div>' + 'Average Rating: ' + c + ' Stars' + '<br>Review: ' + d[0].text + '<br>-' + d[0].author_name);
+                    infowindow.setContent('<div style="font-weight:bold;">' + marker.title + '</div>' + 'Average Rating: ' + c + ' Stars' + '<br>Review: ' + d[0].text + '<br>-' + d[0].author_name);
                 });
                 // Make sure the marker property is cleared if the infowindow is closed.
                 infowindow.addListener('closeclick', function() {
@@ -272,10 +234,48 @@ initMap = function() {
                     })
                 }
         }
+        
+        
+            self.wikiHead = ko.observable();
+            self.wikiElem = ko.observable();
+        
+                /// Get Wikipedia Article on Mount Pleasant
+            self.loadData = function() {
+
+                // load Wikipedia data
+                var wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + "Mount_Pleasant,_Washington,_D.C." + "&format=json&callback=wikiCallback";
+                var wikiRequestTimeout = setTimeout(function(){
+                    self.wikiElem("failed to get Wikipedia resources");
+                }, 8000);
+
+                $.ajax({
+                    url: wikiUrl,
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    success: function( response ) {
+                        var articleList = response[1];
+                        var description = response[2];
+                        for (var i = 0; i < articleList.length; i++) {
+                            var articleStr = articleList[i];
+                            var url = "http://en.wikipedia.org/wiki/" + articleStr;
+                            self.wikiHead(description);
+                            self.wikiElem(url);
+                        };
+
+                        clearTimeout(wikiRequestTimeout);
+                    }
+                });
+
+                return false;
+            };
+        self.loadData();
     };
 
     ko.applyBindings(new viewModel());
 
+
 };
 
-loadData();
+googleError = function() {
+    alert("Error, Google Maps API did not load properly");
+}
