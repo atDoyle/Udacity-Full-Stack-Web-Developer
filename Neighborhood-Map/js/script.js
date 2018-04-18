@@ -1,14 +1,11 @@
-// Javascript file for my website
-
 // Model
 var locations = [
-      {title: "China Town", location: {lat: 38.931447, lng: -77.038175}, category: "Restaurant", selected: 0, PlaceID: "ChIJm-uSRCHIt4kR_FFrlMV9WEk"},
-      {title: "Beau Thai", location: {lat: 38.930303, lng: -77.038255}, category: "Restaurant", selected: 0, PlaceID: "ChIJR3mNPCHIt4kRg7lh0btyMNA"},
-      {title: "Argyle", location: {lat: 38.932446, lng: -77.039006}, category: "Grocery", selected: 0, PlaceID: "ChIJATuAVSHIt4kR1lhRSKwzMOQ"},
-      {title: "Mt. Pleasant Neighborhood Library", location: {lat: 38.9305275, lng: -77.0372412}, category: "Entertainment", selected: 0, PlaceID: "ChIJ0fIsJSHIt4kR34nU2Q4E3UM"},
-      {title: "Suns Cinema", location: {lat: 38.9289535, lng: -77.0372414}, category: "Bar", selected: 0, PlaceID: "ChIJQcMN5SDIt4kRZZq8cQVIjU0"},
-      {title: "Best World", location: {lat: 38.9310368, lng: -77.03833259999999}, category: "Grocery", selected: 0, PlaceID: "ChIJ80jrNyHIt4kRf9zX1J6dKKg"},
-      {title: "Elle", location: {lat: 38.931912, lng: -77.038392}, category: "Bar", selected: 0, PlaceID: "ChIJlfHBWyHIt4kROJ7C5CD7Kr4"}
+      {title: "Los Hermanos", location: {lat: 38.930501, lng: -77.033808}, category: "Restaurant", selected: 0, PlaceID: "ChIJy1RS5yHIt4kRtXgclpLhQTk", FourSquareID: "4d55921d9e508cfaa9cc019b"},
+      {title: "Beau Thai", location: {lat: 38.930303, lng: -77.038255}, category: "Restaurant", selected: 0, PlaceID: "ChIJR3mNPCHIt4kRg7lh0btyMNA", FourSquareID: "5130e9bae4b0ba0714cdaf1f"},
+      {title: "Each Peach Market", location: {lat: 38.928581, lng: -77.037516}, category: "Grocery", selected: 0, PlaceID: "ChIJlRD66yDIt4kRDygS3Io3H0E", FourSquareID: "51b62e1c498e1f35fa361e6e"},
+      {title: "Purple Patch", location: {lat: 38.930581, lng: -77.037669}, category: "Restaurant", selected: 0, PlaceID: "ChIJE_TYPSHIt4kR5Lt4xEUwrGY", FourSquareID: "5508c4ac498ee1716001d28c"},
+      {title: "Irving Wine and Spirits", location: {lat: 38.928924, lng: -77.037665}, category: "Grocery", selected: 0, PlaceID: "ChIJtenW5yDIt4kRwptMo1pMypE", FourSquareID: "4b04aa56f964a520095622e3"},
+      {title: "Elle", location: {lat: 38.931912, lng: -77.038392}, category: "Bar", selected: 0, PlaceID: "ChIJlfHBWyHIt4kROJ7C5CD7Kr4", FourSquareID: "5a66e4a4018cbb2eb2f8b1ee"}
 ];
 
 
@@ -34,9 +31,6 @@ initMap = function() {
         // Create the infowindow for each marker
         var largeInfowindow = new google.maps.InfoWindow();
 
-        // Get information about each marker
-        var service = new google.maps.places.PlacesService(map);
-
         // Style the markers a bit. This will be our listing marker icon.
         var defaultIcon = makeMarkerIcon('B42020');
 
@@ -49,7 +43,7 @@ initMap = function() {
             // Get the position from the location array.
             var position = locations[i].location;
             var title = locations[i].title;
-            var placeID = locations[i].PlaceID;
+            var placeID = locations[i].FourSquareID;
             // Create a marker per location, and put into markers array.
             var marker = new google.maps.Marker({
                 position: position,
@@ -90,7 +84,7 @@ initMap = function() {
                     markers[i].setAnimation(google.maps.Animation.BOUNCE);
                 }
             }
-        };
+        }
 
         // This function populates the infowindow when the marker is clicked. We'll only allow
         // one infowindow which will open at the marker that is clicked, and populate based
@@ -100,15 +94,32 @@ initMap = function() {
             if (infowindow.marker != marker) {
                 infowindow.marker = marker;
                 infowindow.setContent('');
-                service.getDetails({
-                    placeId: marker.placeID
-                }, function(place, status) {
-                    if (status === google.maps.places.PlacesServiceStatus.OK) {
-                        var c = place.rating;
-                        var d = place.reviews;
-                    }
-                    infowindow.setContent('<div style="font-weight:bold;">' + marker.title + '</div>' + 'Average Rating: ' + c + ' Stars' + '<br>Review: ' + d[0].text + '<br>-' + d[0].author_name);
-                });
+                
+                var ID = marker.placeID;
+                
+                
+                //Foursquare ajax request
+                $.ajax({
+                            url:'https://api.foursquare.com/v2/venues/' + ID,
+                            dataType: 'json',
+                            data: '&client_id=V440BDTSXAO41M41IOBQNCEZZSQVCN5K5WLBLDRVHYS2UDRU' +
+                            '&client_secret=TLKIFHF0DOTFQZEOPNPL04RURC2GZBDDPAQ2MDFKYBNDUD4N' +
+                            '&v=20180323',
+                async: true,
+
+                success: function (data) {
+                    var result = data.response;
+                    var category = result.venue.categories[0].shortName;
+                    var addr1 = result.venue.location.formattedAddress[0];
+                    var addr2 = result.venue.location.formattedAddress[1];
+                    var addr3 = result.venue.location.formattedAddress[2];
+                    var rating = result.venue.rating;
+                    
+                  infowindow.setContent('<div style="font-weight:bold;">' + marker.title + '</div>' + '<br>' + '<div>' + addr1 + '<br>' + addr2 + '<br>' + addr3 + '</div>'+ '<br>' + '<div>Foursquare Rating: ' + rating + '<br>Type: ' + category + '</div>');
+  
+                        }
+                        });
+                
                 // Make sure the marker property is cleared if the infowindow is closed.
                 infowindow.addListener('closeclick', function() {
                     infowindow.marker = null;
@@ -144,8 +155,8 @@ initMap = function() {
             }
         };
 
-        //Show the listings
-        for (var i = 0; i < markers.length; i++) {
+        //Show the locations
+        for (i = 0; i < markers.length; i++) {
                     markers[i].setMap(map);
         }
 
@@ -171,7 +182,7 @@ initMap = function() {
                 }
             }
             return false;
-        }
+        };
 
         self.places = ko.observableArray([]);
         self.categories = ko.observableArray([]);
@@ -217,7 +228,7 @@ initMap = function() {
                     if (locationItem.category == self.x()) {
                         self.places.push(locationItem);
                     }
-                })
+                });
                 markers.forEach(function(thing){
                     if(self.containsObject(thing.title, self.places())){
                         thing.setMap(map);
@@ -228,47 +239,13 @@ initMap = function() {
             } else {
                     locations.forEach(function(locationItem){
                         self.places.push({title: locationItem.title});
-                        })
+                        });
                     markers.forEach(function(thing1){
                         thing1.setMap(map);
-                    })
+                    });
                 }
-        }
+        };
         
-        
-            self.wikiHead = ko.observable();
-            self.wikiElem = ko.observable();
-        
-                /// Get Wikipedia Article on Mount Pleasant
-            self.loadData = function() {
-
-                // load Wikipedia data
-                var wikiUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + "Mount_Pleasant,_Washington,_D.C." + "&format=json&callback=wikiCallback";
-                var wikiRequestTimeout = setTimeout(function(){
-                    self.wikiElem("failed to get Wikipedia resources");
-                }, 8000);
-
-                $.ajax({
-                    url: wikiUrl,
-                    dataType: "jsonp",
-                    jsonp: "callback",
-                    success: function( response ) {
-                        var articleList = response[1];
-                        var description = response[2];
-                        for (var i = 0; i < articleList.length; i++) {
-                            var articleStr = articleList[i];
-                            var url = "http://en.wikipedia.org/wiki/" + articleStr;
-                            self.wikiHead(description);
-                            self.wikiElem(url);
-                        };
-
-                        clearTimeout(wikiRequestTimeout);
-                    }
-                });
-
-                return false;
-            };
-        self.loadData();
     };
 
     ko.applyBindings(new viewModel());
@@ -278,4 +255,4 @@ initMap = function() {
 
 googleError = function() {
     alert("Error, Google Maps API did not load properly");
-}
+};
