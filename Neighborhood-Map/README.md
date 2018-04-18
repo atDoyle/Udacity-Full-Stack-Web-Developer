@@ -1,6 +1,6 @@
 # Neghborhood Map
 
-This repository contains code for an application that provides the HTML, CSS and Javascript files needed to display the website created for the Neighborhood Maps project.
+This repository contains code for an application that provides the HTML, CSS and Javascript files needed to display the website created for the Neighborhood Maps project.  This applciation uses both the Google Maps Javascript API and the Foursquare API.
 
 
 ## Getting Started
