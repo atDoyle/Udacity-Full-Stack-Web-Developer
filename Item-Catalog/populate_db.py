@@ -36,7 +36,7 @@ session.commit()
 
 player1 = Player(user_id=1,
                  name="Mookie Betts",
-                 price="$50.00",
+                 price=50,
                  image="mookie.png",
                  team=team1)
 session.add(player1)
@@ -44,7 +44,7 @@ session.commit()
 
 player2 = Player(user_id=1,
                  name="Andrew Benintendi",
-                 price="$15.00",
+                 price=50,
                  image="benintendi.png",
                  team=team1)
 
@@ -53,7 +53,7 @@ session.commit()
 
 player3 = Player(user_id=1,
                  name="David Price",
-                 price="$20.00",
+                 price=20,
                  image="price.png",
                  team=team1)
 
@@ -62,7 +62,7 @@ session.commit()
 
 player4 = Player(user_id=1,
                  name="Dustin Pedroia",
-                 price="$15.00",
+                 price=15,
                  image="pedroia.png",
                  team=team1)
 
@@ -71,7 +71,7 @@ session.commit()
 
 player5 = Player(user_id=1,
                  name="Jackie Bradley Jr.",
-                 price="$10.00",
+                 price=10,
                  image="jbj.png",
                  team=team1)
 
@@ -80,7 +80,7 @@ session.commit()
 
 player6 = Player(user_id=1,
                  name="Xander Bogaerts",
-                 price="$20.00",
+                 price=20.00,
                  image="Bogaerts.png",
                  team=team1)
 
@@ -96,7 +96,7 @@ session.commit()
 
 player1 = Player(user_id=1,
                  name="Aaron Judge",
-                 price="$1.50",
+                 price=1.5,
                  image="judge.png",
                  team=team2)
 
@@ -105,7 +105,7 @@ session.commit()
 
 player2 = Player(user_id=1,
                  name="Luis Severino",
-                 price="$3.00",
+                 price=3,
                  image="severino.png",
                  team=team2)
 
@@ -114,7 +114,7 @@ session.commit()
 
 player3 = Player(user_id=1,
                  name="Aroldis Chapman",
-                 price="$1.00",
+                 price=1,
                  image="chapman.png",
                  team=team2)
 
@@ -123,7 +123,7 @@ session.commit()
 
 player4 = Player(user_id=1,
                  name="Gary Sanchez",
-                 price="$2.00",
+                 price=2,
                  image="sanchez.png",
                  team=team2)
 
@@ -132,7 +132,7 @@ session.commit()
 
 player5 = Player(user_id=1,
                  name="Didi Gregorious",
-                 price="$10.00",
+                 price=10,
                  image="didi.png",
                  team=team2)
 
@@ -149,7 +149,7 @@ session.commit()
 
 player1 = Player(user_id=1,
                  name="Marcus Stroman",
-                 price="$5.00",
+                 price=5,
                  image="stroman.png",
                  team=team3)
 
@@ -158,7 +158,7 @@ session.commit()
 
 player2 = Player(user_id=1,
                  name="Josh Donaldson",
-                 price="$3.00",
+                 price=3,
                  image="donaldson.png",
                  team=team3)
 
@@ -167,7 +167,7 @@ session.commit()
 
 player3 = Player(user_id=1,
                  name="Kevin Pillar",
-                 price="$2.00",
+                 price=2,
                  image="pillar.png",
                  team=team3)
 
@@ -176,7 +176,7 @@ session.commit()
 
 player4 = Player(user_id=1,
                  name="Jose Bautista",
-                 price="$10.00",
+                 price=10,
                  image="bautista.png",
                  team=team3)
 
@@ -185,7 +185,7 @@ session.commit()
 
 player5 = Player(user_id=1,
                  name="Kendrys Morales",
-                 price="$10.00",
+                 price=10,
                  image="morales.png",
                  team=team3)
 
@@ -202,7 +202,7 @@ session.commit()
 
 player1 = Player(user_id=1,
                  name="Manny Machado",
-                 price="$25.00",
+                 price=25,
                  image="machado.png",
                  team=team4)
 
@@ -211,7 +211,7 @@ session.commit()
 
 player2 = Player(user_id=1,
                  name="Dylan Bundy",
-                 price="$3.00",
+                 price=3,
                  image="bundy.png",
                  team=team4)
 
@@ -220,8 +220,8 @@ session.commit()
 
 player3 = Player(user_id=1,
                  name="Jonathan Schoop",
-                 price="$2.00",
-                 image="schoop.png",
+                 price=2,
+                 image="Schoop.png",
                  team=team4)
 
 session.add(player3)
@@ -229,7 +229,7 @@ session.commit()
 
 player4 = Player(user_id=1,
                  name="Chris Davis",
-                 price="$10.00",
+                 price=10,
                  image="davis.png",
                  team=team4)
 
@@ -238,7 +238,7 @@ session.commit()
 
 player5 = Player(user_id=1,
                  name="Adam Jones",
-                 price="$10.00",
+                 price=10,
                  image="jones.png",
                  team=team4)
 
@@ -255,7 +255,7 @@ session.commit()
 
 player1 = Player(user_id=1,
                  name="Chris Archer",
-                 price="$25.00",
+                 price=25,
                  image="archer.png",
                  team=team5)
 
@@ -264,7 +264,7 @@ session.commit()
 
 player2 = Player(user_id=1,
                  name="Evan Longoria",
-                 price="$23.00",
+                 price=23,
                  image="longoria.png",
                  team=team5)
 
@@ -273,7 +273,7 @@ session.commit()
 
 player3 = Player(user_id=1,
                  name="Kevin Kiermaier",
-                 price="$2.00",
+                 price=2,
                  image="kiermaier.png",
                  team=team5)
 
@@ -282,7 +282,7 @@ session.commit()
 
 player4 = Player(user_id=1,
                  name="Logan Morrison",
-                 price="$10.00",
+                 price=10,
                  image="morrison.png",
                  team=team5)
 

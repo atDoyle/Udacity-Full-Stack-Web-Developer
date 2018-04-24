@@ -40,7 +40,7 @@ class Player(Base):
     name = Column(String(80), nullable=False)
     id = Column(Integer, primary_key=True)
     price = Column(Integer)
-    image = Column(Integer)
+    image = Column(String(250))
     team_id = Column(Integer, ForeignKey('team.id'))
     user_id = Column(Integer, ForeignKey('user.id'))
     team = relationship(Team)
