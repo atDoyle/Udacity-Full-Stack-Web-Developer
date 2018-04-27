@@ -20,7 +20,9 @@ The .wsgi that is called when the request is made in the browser should call the
 
 All of the relevent packages need to be installed in order for the Flask application to run properly, including Flask, SQLAlachemy, PostgreSQL, and Oauth2Client.  THese packages can be installed by entering *sudo apt-get install python-[package]*.
 
-Finally, several changes need to be made in order for Oauth2 to work properly.  In the Google Developer console, the domain name needs to be entered into the app info and the new client_secrets.json file downloaded.
+The client_secrets.json file needs to be reconfigured to be used on the Apache2 server.  In the Google Developer console, the domain name needs to be entered into the app information and the new client_secrets.json file downloaded.
+
+Finally, the references to storage locations of other files (including /static/images, /static/css, /templates, and client_secrets.json) need to be update to reflect their relevent storage locations on the server.
 
 ### Using the site
 
