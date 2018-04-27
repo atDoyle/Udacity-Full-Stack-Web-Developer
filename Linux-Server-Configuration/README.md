@@ -27,3 +27,7 @@ Finally, the references to storage locations of other files (including /static/i
 ### Using the site
 
 To access the site, in the browser navigate to http://18.221.54.126.xip.io/.  From there the user can view the items on the website as well as login using their Google+ or Facebook account to add and modify items of their own.
+
+### Third Party Resources
+
+The primary resources used to configure this web application was the Udacity courses and forums - generally speaking, another Udacity user encountered the same problem I had and posted in the forums, often with a link describing the solution.  The Flask documentation for the mod_wsgi package (http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/) was particularly helpful as well.
