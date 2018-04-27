@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-This repository contains instructions to access and use the Linux server running on an AWS Lightsail instance.  The server is running Ubuntu and uses Apache2 to host the website created for the Item Catalog project in this course, utilizing a PostgreSQL database.  The IP address of this server is 18.221.54.126:80.  Software installed for this project includes Apache2 as well as the mod_wsgi package to host Python web applications.  Any package needed to run the Python web server was also installed on the Lightsail instance.
+This repository contains instructions to access and use the Linux server running on an AWS Lightsail instance.  The server is running Ubuntu and uses Apache2 to host the website created for the Item Catalog project in this course, utilizing a PostgreSQL database.  The IP address of this server is 18.221.54.126:80.
 
 ### Security
 
@@ -11,7 +11,6 @@ This Ubuntu server is running on an AWS Lightsail instance and can be accessed v
 Once the server can be accessed via SSH, the user *grader* was added an given sudo permission.  In order for the user *grader* to be able to login via ssh, a key pair needs to be generated for the user.  Once generated, the private key needs to be saved in the directory **/home/grader/.ssh/authorized_keys**.  The server can now be accessed with the public key by entering **ssh grader@18.221.54.126 -p 2200 -i ~/.ssh/grader**.
 
 The final step in setting up the server prior to implementing the web server is to set the firewall settings.  This is done by enter *ufw allow [port]*.  Only ports 2200, 123 and 80 are currenty allowed through the firewall.  The firewall was then activated by entering *ufw enable*.
-
 
 ### Web Server
 
@@ -22,7 +21,6 @@ The .wsgi that is called when the request is made in the browser should call the
 All of the relevent packages need to be installed in order for the Flask application to run properly, including Flask, SQLAlachemy, PostgreSQL, and Oauth2Client.  THese packages can be installed by entering *sudo apt-get install python-[package]*.
 
 Finally, several changes need to be made in order for Oauth2 to work properly.  In the Google Developer console, the domain name needs to be entered into the app info and the new client_secrets.json file downloaded.
-
 
 ### Using the site
 
