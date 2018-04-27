@@ -24,4 +24,4 @@ Finally, several changes need to be made in order for Oauth2 to work properly.  
 
 ### Using the site
 
-To access the site, in the browser navigate to http://http://18.221.54.126.xip.io/.  From there the user can view the items on the website as well a login using their Google+ or Facebook account to add and modify items of their own.
+To access the site, in the browser navigate to http://18.221.54.126.xip.io/.  From there the user can view the items on the website as well a login using their Google+ or Facebook account to add and modify items of their own.
